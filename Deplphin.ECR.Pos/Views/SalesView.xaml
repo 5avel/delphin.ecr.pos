@@ -1,0 +1,40 @@
+﻿<Page x:Class="Deplphin.ECR.Pos.Views.SalesView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:vm ="clr-namespace:Deplphin.ECR.Pos.ViewsModels"
+      mc:Ignorable="d"
+	Title="SalesView" MinHeight="300" MinWidth="400" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" d:DesignWidth="565" d:DesignHeight="350.825">
+
+    <Page.DataContext>
+        <vm:SalesViewModel/>
+    </Page.DataContext>
+
+    <Grid Name="g1" Background="#FF4F2424" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="59*"/>
+        </Grid.ColumnDefinitions>
+
+        <ScrollViewer  Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+            <TreeView VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  >
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding Root }">
+                        <TextBlock Text="{Binding Root.Title}"/>
+                        <HierarchicalDataTemplate.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding }"></TextBlock>
+                            </DataTemplate>
+                        </HierarchicalDataTemplate.ItemTemplate>
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
+        </ScrollViewer>
+            
+            
+
+        <ListView Grid.Column="1" HorizontalAlignment="Stretch" Height="109" Margin="10,10,10,10" VerticalAlignment="Top" />
+
+    </Grid>
+</Page>

@@ -10,6 +10,10 @@ namespace Deplphin.ECR.Pos.ViewsModels
 {
     public class MainViewModel : ViewModelBase
     {
+        public MainViewModel()
+        {
+            FrameSource = "SalesView.xaml"; // вид при старте
+        }
         private string frameSource;
 
         public string FrameSource

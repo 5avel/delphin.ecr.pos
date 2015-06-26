@@ -68,6 +68,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewsModels\MainViewModel.cs" />
+    <Compile Include="ViewsModels\SalesViewModel.cs" />
     <Compile Include="Views\GoodsView.xaml.cs">
       <DependentUpon>GoodsView.xaml</DependentUpon>
     </Compile>
