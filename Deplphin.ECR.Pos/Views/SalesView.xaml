@@ -25,14 +25,42 @@
         <GridSplitter Grid.Column="1" HorizontalAlignment="Left" Margin="0, 5"   VerticalAlignment="Stretch" Width="5" Grid.RowSpan="2"/>
 
 
-        <ListView  Grid.Column="0" Grid.Row="0" Margin="5"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible" />
+        <ListView SelectedItem="{Binding SelectedGroup}"  ItemsSource="{Binding GoodsGroupeCollection}"  Grid.Column="0" Grid.Row="0" Margin="5"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionMode="Single" >
+            
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Code" DisplayMemberBinding="{Binding Code}"/>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                </GridView>
+            </ListView.View>
 
-        <ListView Grid.Column="0" Grid.Row="1" Margin="5, 10, 5, 5"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible" />
+        </ListView>
+
+        <ListView SelectedItem="{Binding SelectedGood}" ItemsSource="{Binding GoodsCollection}" Grid.Column="0" Grid.Row="1" Margin="5, 10, 5, 5"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible"  >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Code" DisplayMemberBinding="{Binding Code}"  />
+                    <GridViewColumn  Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price}"/>
+                    <GridViewColumn Header="Gr" DisplayMemberBinding="{Binding GoodsGroupeId}"/>
+                </GridView>           
+            </ListView.View>
+        </ListView>
 
 
 
-        <StackPanel Grid.Column="1" HorizontalAlignment="Stretch" Grid.RowSpan="2" VerticalAlignment="Stretch" >
-            <ListView  HorizontalAlignment="Stretch" Height="150" Margin="10,5,5,5" VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Visible" />
+        <StackPanel   Grid.Column="1" HorizontalAlignment="Stretch" Grid.RowSpan="2" VerticalAlignment="Stretch" >
+            <ListView ItemsSource="{Binding Check}" HorizontalAlignment="Stretch" Height="150" Margin="10,5,5,5" VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Code" DisplayMemberBinding="{Binding Code}"  />
+                        <GridViewColumn  Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="Count" DisplayMemberBinding="{Binding Count}"/>
+                        <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price}"/>
+                        <GridViewColumn Header="Gr" DisplayMemberBinding="{Binding GoodsGroupeId}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </StackPanel>
 
     </Grid>

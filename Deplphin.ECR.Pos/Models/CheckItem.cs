@@ -1,17 +1,28 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using GalaSoft.MvvmLight;
 
 namespace Deplphin.ECR.Pos.Models
 {
-    public class Good : ObservableObject
+    public class CheckItem : ObservableObject
     {
         private string name;
         private int code;
         private double price;
         private int goodsGroupeId;
+        private double count;
+
+        public double Count
+        {
+            get { return count; }
+            set 
+            { 
+                count = value;
+                RaisePropertyChanged(() => Count);
+            }
+        }
 
         public int GoodsGroupeId
         {
@@ -22,7 +33,11 @@ namespace Deplphin.ECR.Pos.Models
         public double Price
         {
             get { return price; }
-            set { price = value; }
+            set 
+            {
+                price = value;
+                RaisePropertyChanged(() => Price);
+            }
         }
 
         public int Code
@@ -36,6 +51,5 @@ namespace Deplphin.ECR.Pos.Models
             get { return name; }
             set { name = value; }
         }
-
     }
 }

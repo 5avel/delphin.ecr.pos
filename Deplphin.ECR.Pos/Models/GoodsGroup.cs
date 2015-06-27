@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GalaSoft.MvvmLight;
 
 namespace Deplphin.ECR.Pos.Models
 {
-    class GoodsGroup
+    public class GoodsGroup : ObservableObject
     {
         private string name;
         private int code;

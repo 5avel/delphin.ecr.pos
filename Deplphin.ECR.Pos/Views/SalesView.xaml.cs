@@ -1,5 +1,8 @@
 ﻿using System.Windows.Controls;
 
+using GalaSoft.MvvmLight.Command;
+using Deplphin.ECR.Pos.ViewsModels;
+
 namespace Deplphin.ECR.Pos.Views
 {
     /// <summary>
@@ -12,9 +15,6 @@ namespace Deplphin.ECR.Pos.Views
             InitializeComponent();
         }
 
-        private void GridSplitter_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
-        {
 
-        }
     }
 }

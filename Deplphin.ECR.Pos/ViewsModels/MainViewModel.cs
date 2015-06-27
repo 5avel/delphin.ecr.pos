@@ -5,6 +5,8 @@ using System.Text;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight;
 using System.Windows.Input;
+using System.Collections.ObjectModel;
+using Deplphin.ECR.Pos.Models;
 
 namespace Deplphin.ECR.Pos.ViewsModels
 {
@@ -25,6 +27,8 @@ namespace Deplphin.ECR.Pos.ViewsModels
                 RaisePropertyChanged(() => FrameSource);
             }
         }
+
+
 
 
 
