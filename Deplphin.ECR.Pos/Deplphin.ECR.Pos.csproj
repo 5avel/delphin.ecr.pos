@@ -71,6 +71,7 @@
     <Compile Include="Models\Good.cs" />
     <Compile Include="Models\GoodsGroup.cs" />
     <Compile Include="Models\Setings.cs" />
+    <Compile Include="ViewsModels\GoodsViewModel.cs" />
     <Compile Include="ViewsModels\MainViewModel.cs" />
     <Compile Include="ViewsModels\SalesViewModel.cs" />
     <Compile Include="Views\GoodsView.xaml.cs">

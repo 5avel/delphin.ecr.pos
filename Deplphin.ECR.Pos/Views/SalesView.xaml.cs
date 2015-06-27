@@ -11,5 +11,10 @@ namespace Deplphin.ECR.Pos.Views
         {
             InitializeComponent();
         }
+
+        private void GridSplitter_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
+        {
+
+        }
     }
 }
