@@ -13,12 +13,12 @@
 
     <Grid Name="g1"  >
         <Grid.RowDefinitions>
-            <RowDefinition Height="178*"/>
-            <RowDefinition Height="173*"/>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250" />
-            <ColumnDefinition Width="59*"/>
+            <ColumnDefinition Width="400" />
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" Margin="5, 0"   VerticalAlignment="Top" Grid.ColumnSpan="1" Height="5" />
@@ -26,11 +26,11 @@
 
 
         <ListView SelectedItem="{Binding SelectedGroup}"  ItemsSource="{Binding GoodsGroupeCollection}"  Grid.Column="0" Grid.Row="0" Margin="5"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionMode="Single" >
-            
+
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Code" DisplayMemberBinding="{Binding Code}"/>
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Width="40" Header="Код" DisplayMemberBinding="{Binding Code}"/>
+                    <GridViewColumn Width="200" Header="Название" DisplayMemberBinding="{Binding Name}"/>
                 </GridView>
             </ListView.View>
 
@@ -39,29 +39,53 @@
         <ListView SelectedItem="{Binding SelectedGood}" ItemsSource="{Binding GoodsCollection}" Grid.Column="0" Grid.Row="1" Margin="5, 10, 5, 5"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible"  >
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Code" DisplayMemberBinding="{Binding Code}"  />
-                    <GridViewColumn  Header="Name" DisplayMemberBinding="{Binding Name}"/>
-                    <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price}"/>
-                    <GridViewColumn Header="Gr" DisplayMemberBinding="{Binding GoodsGroupeId}"/>
-                </GridView>           
+                    <GridViewColumn Width="40" Header="Код" DisplayMemberBinding="{Binding Code}"  />
+                    <GridViewColumn Width="200"  Header="Название" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Width="60" Header="Цена" DisplayMemberBinding="{Binding Price}"/>
+                    <GridViewColumn Width="40" Header="Код Группы" DisplayMemberBinding="{Binding GoodsGroupeId}"/>
+                </GridView>
             </ListView.View>
         </ListView>
 
 
 
-        <StackPanel   Grid.Column="1" HorizontalAlignment="Stretch" Grid.RowSpan="2" VerticalAlignment="Stretch" >
-            <ListView ItemsSource="{Binding Check}" HorizontalAlignment="Stretch" Height="150" Margin="10,5,5,5" VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Visible">
+        <DockPanel LastChildFill="True"   Grid.Column="1" Grid.RowSpan="2" >
+            <ListView DockPanel.Dock="Top" ItemsSource="{Binding Check}" HorizontalAlignment="Stretch" Height="200" Margin="10,5,5,5" VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Visible">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Code" DisplayMemberBinding="{Binding Code}"  />
-                        <GridViewColumn  Header="Name" DisplayMemberBinding="{Binding Name}"/>
-                        <GridViewColumn Header="Count" DisplayMemberBinding="{Binding Count}"/>
-                        <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price}"/>
-                        <GridViewColumn Header="Gr" DisplayMemberBinding="{Binding GoodsGroupeId}"/>
+                        <GridViewColumn Width="40" Header="Код" DisplayMemberBinding="{Binding Code}"  />
+                        <GridViewColumn Width="200"  Header="Название" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Width="45" Header="Кол-во">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Width="30" Text="{Binding Count}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="70" Header="Цена">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Width="55" Text="{Binding Price}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="60" Header="Сумма" DisplayMemberBinding="{Binding Sum}"/>
                     </GridView>
                 </ListView.View>
             </ListView>
-        </StackPanel>
+            <Grid DockPanel.Dock="Bottom" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Command="{Binding CheckoutCommand}" Content="Оплата" Grid.Column="1" HorizontalAlignment="Stretch" Margin="5" Grid.Row="1" VerticalAlignment="Stretch"/>
+                
+            </Grid>
+        </DockPanel>
 
     </Grid>
 </Page>

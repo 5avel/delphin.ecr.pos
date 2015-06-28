@@ -14,51 +14,20 @@ namespace Deplphin.ECR.Pos.ViewsModels
 {
     public class SalesViewModel : ViewModelBase
     {
-        public ConfigurationManager cm;
-        public SalesViewModel()
+        private ConfigurationManager cm;
+        private ObservableCollection<Good> goodsCollection;  // ТОвары выбранной группы
+        public ObservableCollection<GoodsGroup> GoodsGroupeCollection { get; private set; } // Группы товаров
+        private GoodsGroup selectedGroup; // Выбранная группа
+        private Good selectedGood; // Выбранный товар
+        private ObservableCollection<CheckItem> check; // Чек
+
+        public SalesViewModel() // КОНСТРУКТОР
         {
             cm = ConfigurationManager.GetInstance();
             GoodsGroupeCollection = cm.GoodsGroupeCollection;
             if(cm.SelectedGroup != null) SelectedGroup = cm.SelectedGroup;
             if (cm.Check != null) Check = cm.Check;
-
-            //SelectedGroup = GoodsGroupeCollection[0];
-            //goodsCollection = new ObservableCollection<Good>();
-            //goodsCollection.Add(new Good {Code=1,GoodsGroupeId=1,Name="Test1", Price=8.8 });
-            //goodsCollection.Add(new Good { Code = 2, GoodsGroupeId = 1, Name = "Test2", Price = 8.8 });
-            //goodsCollection.Add(new Good { Code = 3, GoodsGroupeId = 1, Name = "Test3", Price = 8.8 });
-            //goodsCollection.Add(new Good { Code = 4, GoodsGroupeId = 1, Name = "Test4", Price = 8.8 });
-            //goodsCollection.Add(new Good { Code = 5, GoodsGroupeId = 2, Name = "Test5", Price = 8.8 });
-            //goodsCollection.Add(new Good { Code = 6, GoodsGroupeId = 2, Name = "Test6", Price = 8.8 });
-            //goodsCollection.Add(new Good { Code = 7, GoodsGroupeId = 2, Name = "Test7", Price = 8.8 });
-            //goodsCollection.Add(new Good { Code = 8, GoodsGroupeId = 3, Name = "Test8", Price = 8.8 });
-            //goodsCollection.Add(new Good { Code = 9, GoodsGroupeId = 3, Name = "Test9", Price = 8.8 });
-            //goodsCollection.Add(new Good { Code = 10, GoodsGroupeId = 3, Name = "Test10", Price = 8.8 });
-            //goodsCollection.Add(new Good { Code = 11, GoodsGroupeId = 3, Name = "Test11", Price = 8.8 });
-            //goodsCollection.Add(new Good { Code = 12, GoodsGroupeId = 3, Name = "Test12", Price = 8.8 });
-            //goodsCollection.Add(new Good { Code = 13, GoodsGroupeId = 4, Name = "Test13", Price = 8.8 });
-            //XmlSerializer myXmlSer = new XmlSerializer(GoodsCollection.GetType());
-            //StreamWriter myWriter = new StreamWriter(Environment.CurrentDirectory + @"\Goods.xml");
-            //myXmlSer.Serialize(myWriter, GoodsCollection);
-            //myWriter.Close();
-
-
-            //GoodsGroupeCollection = new ObservableCollection<GoodsGroup>();
-            //GoodsGroupeCollection.Add(new GoodsGroup { Code = 1, Name = "Товары1" });
-            //GoodsGroupeCollection.Add(new GoodsGroup { Code = 2, Name = "Товары1" });
-            //GoodsGroupeCollection.Add(new GoodsGroup { Code = 3, Name = "Товары1" });
-            //GoodsGroupeCollection.Add(new GoodsGroup { Code = 4, Name = "Товары1" });
-            //XmlSerializer myXmlSer = new XmlSerializer(GoodsGroupeCollection.GetType());
-            //StreamWriter myWriter = new StreamWriter(Environment.CurrentDirectory + @"\Groups.xml");
-            //myXmlSer.Serialize(myWriter, GoodsGroupeCollection);
-            //myWriter.Close();
-
         }
-        // Все товары
-        //public ObservableCollection<Good> AllGoodsCollection { get; private set; }
-
-        // ТОвары выбранной группы
-        private ObservableCollection<Good> goodsCollection;
 
         public ObservableCollection<Good> GoodsCollection
         {
@@ -70,13 +39,6 @@ namespace Deplphin.ECR.Pos.ViewsModels
             }
         }
 
-
-
-        // Группы товаров
-        public ObservableCollection<GoodsGroup> GoodsGroupeCollection { get; private set; }
-
-        private GoodsGroup selectedGroup;
-
         public GoodsGroup SelectedGroup
         {
             get { return selectedGroup; }
@@ -85,12 +47,9 @@ namespace Deplphin.ECR.Pos.ViewsModels
                 selectedGroup = value;
                 cm.SelectedGroup = value;
                 SetGoodsSelectedGrop(); // Выводит товары выбранной группы
-                RaisePropertyChanged(() => SelectedGroup);
-                
+                RaisePropertyChanged(() => SelectedGroup);            
             }
         }
-
-        private Good selectedGood;
 
         public Good SelectedGood
         {
@@ -101,12 +60,8 @@ namespace Deplphin.ECR.Pos.ViewsModels
                 AddGoodToCheck(SelectedGood); // Добавляем товар в чек
                 selectedGood = null;
                 //RaisePropertyChanged(() => SelectedGood);
-
             }
         }
-
-        // Чек
-        private ObservableCollection<CheckItem> check;
 
         public ObservableCollection<CheckItem> Check
         {
@@ -123,7 +78,7 @@ namespace Deplphin.ECR.Pos.ViewsModels
 
 
 
-        void SetGoodsSelectedGrop()
+        private void SetGoodsSelectedGrop()
         {
             int count = cm.AllGoodsCollection.Count;
             GoodsCollection = new ObservableCollection<Good>();
@@ -136,7 +91,7 @@ namespace Deplphin.ECR.Pos.ViewsModels
             }
         }
 
-        void AddGoodToCheck(Good good)
+        private void AddGoodToCheck(Good good)
         {
             if (Check == null) Check = new ObservableCollection<CheckItem>();
 
@@ -149,7 +104,6 @@ namespace Deplphin.ECR.Pos.ViewsModels
                 }
             }
 
-
             Check.Add(new CheckItem
             {
                 Code = good.Code,
@@ -157,20 +111,22 @@ namespace Deplphin.ECR.Pos.ViewsModels
                 GoodsGroupeId = good.GoodsGroupeId,
                 Name = good.Name,
                 Price = good.Price
-            });
-
-            
+            });   
         }
 
 
-        private ICommand goodDoublClick;
-        public ICommand GoodDoublClick
+        private ICommand checkoutCommand;
+        public ICommand CheckoutCommand
         {
             get
             {
-                return goodDoublClick ?? (goodDoublClick = new RelayCommand(() =>
+                return checkoutCommand ?? (checkoutCommand = new RelayCommand(() =>
                 {
-                   
+                    if (Check != null && Check.Count > 0)
+                    {
+                        MessageBox.Show("Оплата");
+                    }
+
                 }));
             }
         }

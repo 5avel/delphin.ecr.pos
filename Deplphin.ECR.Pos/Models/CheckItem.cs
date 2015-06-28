@@ -13,6 +13,17 @@ namespace Deplphin.ECR.Pos.Models
         private double price;
         private int goodsGroupeId;
         private double count;
+        private double sum;
+
+        public double Sum
+        {
+            get { return sum; }
+            set 
+            { 
+                sum = value;
+                RaisePropertyChanged(() => Sum);
+            }
+        }
 
         public double Count
         {
@@ -20,6 +31,7 @@ namespace Deplphin.ECR.Pos.Models
             set 
             { 
                 count = value;
+                Sum = Count * Price;
                 RaisePropertyChanged(() => Count);
             }
         }
@@ -36,6 +48,7 @@ namespace Deplphin.ECR.Pos.Models
             set 
             {
                 price = value;
+                Sum = Count * Price;
                 RaisePropertyChanged(() => Price);
             }
         }
