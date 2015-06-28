@@ -131,9 +131,13 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Resource Include="Images\Delphin.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\add.bmp" />
+    <Resource Include="Images\edit.bmp" />
+    <Resource Include="Images\remove.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -75,9 +75,6 @@ namespace Deplphin.ECR.Pos.ViewsModels
         } 
 
 
-
-
-
         private void SetGoodsSelectedGrop()
         {
             int count = cm.AllGoodsCollection.Count;

@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
 using System.Xml.Serialization;
+using System.Linq;
 
 namespace Deplphin.ECR.Pos.DAL
 {
@@ -53,6 +54,11 @@ namespace Deplphin.ECR.Pos.DAL
                 XmlSerializer myXmlSer = new XmlSerializer(typeof(ObservableCollection<Good>));
                 FileStream mySet = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "Goods.xml", FileMode.Open);
                 AllGoodsCollection = (ObservableCollection<Good>)myXmlSer.Deserialize(mySet);
+
+                // Sorting
+                var ggc = new ObservableCollection<Good>(from i in AllGoodsCollection orderby i.Code select i);
+                AllGoodsCollection = ggc;
+
                 mySet.Close();
 
             }
@@ -70,12 +76,40 @@ namespace Deplphin.ECR.Pos.DAL
                 XmlSerializer myXmlSer = new XmlSerializer(typeof(ObservableCollection<GoodsGroup>));
                 FileStream mySet = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "Groups.xml", FileMode.Open);
                 GoodsGroupeCollection = (ObservableCollection<GoodsGroup>)myXmlSer.Deserialize(mySet);
+                // Sorting
+                var ggc = new ObservableCollection<GoodsGroup>(from i in GoodsGroupeCollection orderby i.Code select i);
+                GoodsGroupeCollection = ggc;
+
                 mySet.Close();
             }
             else
             {
                 MessageBox.Show("Файл: " + AppDomain.CurrentDomain.BaseDirectory + "Groups.xml" + " Необнаружен!");
             }
+        }
+
+        public bool SaveDataToXml()
+        {
+            try
+            {
+                XmlSerializer myXmlSerGroupe = new XmlSerializer(GoodsGroupeCollection.GetType());
+                StreamWriter myWriterGroupe = new StreamWriter(Environment.CurrentDirectory + @"\Groups.xml");
+                myXmlSerGroupe.Serialize(myWriterGroupe, GoodsGroupeCollection);
+                myWriterGroupe.Close();
+
+
+
+                XmlSerializer myXmlSerGoods = new XmlSerializer(AllGoodsCollection.GetType());
+                StreamWriter myWriterGoods = new StreamWriter(Environment.CurrentDirectory + @"\Goods.xml");
+                myXmlSerGoods.Serialize(myWriterGoods, AllGoodsCollection);
+                myWriterGoods.Close();
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+                return false;
+            }
+            return true;
         }
     }
 }

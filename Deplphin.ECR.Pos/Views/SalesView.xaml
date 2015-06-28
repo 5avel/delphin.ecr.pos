@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:vm ="clr-namespace:Deplphin.ECR.Pos.ViewsModels"
       mc:Ignorable="d"
-	Title="SalesView" MinHeight="300" MinWidth="400" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" d:DesignWidth="565" d:DesignHeight="350.825">
+	Title="SalesView" MinHeight="450" MinWidth="500" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
     <Page.DataContext>
         <vm:SalesViewModel/>
@@ -73,17 +73,39 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Grid DockPanel.Dock="Bottom" >
+            <Grid DockPanel.Dock="Bottom" Margin="10" >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="35"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="130"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button Command="{Binding CheckoutCommand}" Content="Оплата" Grid.Column="1" HorizontalAlignment="Stretch" Margin="5" Grid.Row="1" VerticalAlignment="Stretch"/>
-                
+                <Button FontSize="48" Command="{Binding CheckoutCommand}" Content="Оплата" Grid.Column="2" HorizontalAlignment="Stretch" Margin="5,4,5,6" Grid.Row="3" VerticalAlignment="Stretch" Grid.RowSpan="2"/>
+
+                <Button Grid.Column="0" Grid.Row="0" Margin="5,5,0,0"  Content="Очистить чек" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="120"/>
+                <Button Grid.Column="1" Grid.Row="0" Margin="5,5,0,0"  Content="Удалить элемент" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="120"/>
+
+                <Label Grid.Column="0" Grid.Row="1" Content="Вид оплаты:" HorizontalAlignment="Left"   VerticalAlignment="Top" Width="120"/>
+                <ComboBox Margin="5,6,0,6" Grid.Column="1" Grid.Row="1"  SelectedIndex="0" Width="120" Height="23" HorizontalAlignment="Left">
+                    <ListBoxItem Content="Наличными" />
+                    <ListBoxItem Content="Картой" />
+                </ComboBox>
+
+                <Label Grid.Column="0" Grid.Row="3" Content="Получено:" HorizontalAlignment="Left"   VerticalAlignment="Top" Margin="5,5,0,0" Width="115"/>
+                <Label Grid.Column="2" Grid.RowSpan="3" Content="0.00" FontSize="48" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  />
+                <TextBox  Grid.Column="1" Height="25" Grid.Row="2" Text="0.00" FontSize="18" Width="120"  Margin="5" />
+                <Label Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"  Content="0.00" FontSize="36" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+                <Label Grid.Column="0" Grid.Row="2" Content="Скидка:" HorizontalAlignment="Left"   VerticalAlignment="Top" Width="120"/>
+                <TextBox  Grid.Column="1" Height="25" Grid.Row="3" Text="0.00" FontSize="18" Width="120"  Margin="5" />
+
+
+
             </Grid>
         </DockPanel>
 
