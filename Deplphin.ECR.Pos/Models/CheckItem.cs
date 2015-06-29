@@ -3,11 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Deplphin.ECR.Pos.DAL;
 
 namespace Deplphin.ECR.Pos.Models
 {
     public class CheckItem : ObservableObject
     {
+
         private string name;
         private int code;
         private double price;

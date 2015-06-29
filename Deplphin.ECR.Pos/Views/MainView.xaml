@@ -33,6 +33,12 @@
                 <MenuItem Header="Отчеты" HorizontalAlignment="Left" Width="140" Height="20"/>
                 <MenuItem Header="Настройки" HorizontalAlignment="Left" Width="140" Height="20"/>
             </MenuItem>
+            <MenuItem Header="ККМ">
+                <MenuItem Header="Х-Отчет" HorizontalAlignment="Left" Width="140" Height="20" Command="{Binding PrintXReportCommand}" />
+                <MenuItem Header="Z-Отчет" HorizontalAlignment="Left" Width="140" Height="20" Command="{Binding PrintZReportCommand}"/>
+                <MenuItem Header="Test" HorizontalAlignment="Left" Width="140" Height="20" Command="{Binding TestCommand}" />
+                <MenuItem Header="Настройки" HorizontalAlignment="Left" Width="140" Height="20"/>
+            </MenuItem>
         </Menu>
         <Frame Source="{Binding FrameSource}" HorizontalAlignment="Stretch"  Grid.Row="2" VerticalAlignment="Stretch" NavigationUIVisibility="Hidden" />
         <Button Content="Продажи" Command="{Binding WindowsSales}" HorizontalAlignment="Left" Margin="10,3,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75"/>

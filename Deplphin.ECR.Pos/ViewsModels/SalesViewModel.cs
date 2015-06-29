@@ -10,6 +10,10 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using Deplphin.ECR.Pos.DAL;
 
+using System.Reflection;
+using ecrmini;
+
+
 namespace Deplphin.ECR.Pos.ViewsModels
 {
     public class SalesViewModel : ViewModelBase
@@ -21,6 +25,30 @@ namespace Deplphin.ECR.Pos.ViewsModels
         private Good selectedGood; // Выбранный товар
         private ObservableCollection<CheckItem> check; // Чек
 
+        private double chechSum;
+
+        public double ChechSum
+        {
+            get { return chechSum; }
+            set 
+            { 
+                chechSum = value;
+                RaisePropertyChanged(() => ChechSum);
+            }
+        }
+
+        private double paySum;
+
+        public double PayhSum
+        {
+            get { return paySum; }
+            set
+            {
+                paySum = value;
+                RaisePropertyChanged(() => PayhSum);
+            }
+        }
+
         public SalesViewModel() // КОНСТРУКТОР
         {
             cm = ConfigurationManager.GetInstance();
@@ -28,6 +56,8 @@ namespace Deplphin.ECR.Pos.ViewsModels
             if(cm.SelectedGroup != null) SelectedGroup = cm.SelectedGroup;
             if (cm.Check != null) Check = cm.Check;
         }
+
+
 
         public ObservableCollection<Good> GoodsCollection
         {
@@ -68,11 +98,24 @@ namespace Deplphin.ECR.Pos.ViewsModels
             get { return check; }
             set
             {
+                MessageBox.Show("sds");
                 check = value;
                 cm.Check = value;
+                
                 RaisePropertyChanged(() => Check);
+
             }
         } 
+
+        public void UpdateCheckSum()
+        {
+            double sum = 0;
+            foreach(CheckItem c in Check)
+            {
+                sum += c.Sum;
+            }
+            ChechSum = sum;
+        }
 
 
         private void SetGoodsSelectedGrop()
@@ -108,7 +151,8 @@ namespace Deplphin.ECR.Pos.ViewsModels
                 GoodsGroupeId = good.GoodsGroupeId,
                 Name = good.Name,
                 Price = good.Price
-            });   
+            });
+            
         }
 
 
@@ -121,9 +165,23 @@ namespace Deplphin.ECR.Pos.ViewsModels
                 {
                     if (Check != null && Check.Count > 0)
                     {
-                        MessageBox.Show("Оплата");
+                        KKM.Sale(Check, PayhSum);
+                        Check.Clear();
+                        
                     }
 
+                }));
+            }
+        }
+
+        private ICommand updateCheckSumCommand;
+        public ICommand UpdateCheckSumCommand
+        {
+            get
+            {
+                return updateCheckSumCommand ?? (updateCheckSumCommand = new RelayCommand(() =>
+                {
+                        UpdateCheckSum();
                 }));
             }
         }

@@ -1,7 +1,9 @@
 ﻿using System.Windows.Controls;
-
+using ecrmini;
 using GalaSoft.MvvmLight.Command;
 using Deplphin.ECR.Pos.ViewsModels;
+using System.Windows;
+using System;
 
 namespace Deplphin.ECR.Pos.Views
 {
@@ -10,6 +12,7 @@ namespace Deplphin.ECR.Pos.Views
     /// </summary>
     public partial class SalesView : Page
     {
+        public t400 it;
         public SalesView()
         {
             InitializeComponent();

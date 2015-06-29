@@ -7,6 +7,7 @@ using GalaSoft.MvvmLight;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
 using Deplphin.ECR.Pos.Models;
+using Deplphin.ECR.Pos.DAL;
 
 namespace Deplphin.ECR.Pos.ViewsModels
 {
@@ -53,6 +54,42 @@ namespace Deplphin.ECR.Pos.ViewsModels
                 return _windowsGoods ?? (_windowsGoods = new RelayCommand(() =>
                 {
                     FrameSource = "GoodsView.xaml";
+                }));
+            }
+        }
+
+        private ICommand printZReportCommand;
+        public ICommand PrintZReportCommand
+        {
+            get
+            {
+                return printZReportCommand ?? (printZReportCommand = new RelayCommand(() =>
+                {
+                    KKM.PrintZReport();
+                }));
+            }
+        }
+
+        private ICommand printXReportCommand;
+        public ICommand PrintXReportCommand
+        {
+            get
+            {
+                return printXReportCommand ?? (printXReportCommand = new RelayCommand(() =>
+                {
+                    KKM.PrintXReport();
+                }));
+            }
+        }
+
+        private ICommand testCommand;
+        public ICommand TestCommand
+        {
+            get
+            {
+                return testCommand ?? (testCommand = new RelayCommand(() =>
+                {
+                    KKM.Test();
                 }));
             }
         }
