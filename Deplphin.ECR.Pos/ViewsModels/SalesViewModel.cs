@@ -12,6 +12,8 @@ using Deplphin.ECR.Pos.DAL;
 
 using System.Reflection;
 using ecrmini;
+using GalaSoft.MvvmLight.Messaging;
+using System.Diagnostics;
 
 
 namespace Deplphin.ECR.Pos.ViewsModels
@@ -24,6 +26,18 @@ namespace Deplphin.ECR.Pos.ViewsModels
         private GoodsGroup selectedGroup; // Выбранная группа
         private Good selectedGood; // Выбранный товар
         private ObservableCollection<CheckItem> check; // Чек
+        private CheckItem selectedCheckItem;
+
+        public CheckItem SelectedCheckItem
+        {
+            get { return selectedCheckItem; }
+            set 
+            { 
+                selectedCheckItem = value;
+                UpdateCheckSum();
+                RaisePropertyChanged(() => SelectedCheckItem);
+            }
+        }
 
         private double chechSum;
 
@@ -45,9 +59,24 @@ namespace Deplphin.ECR.Pos.ViewsModels
             set
             {
                 paySum = value;
+                UpdateCheckSum();
                 RaisePropertyChanged(() => PayhSum);
+                RaisePropertyChanging(() => PayhSum);
             }
         }
+
+        private double costSum;
+
+        public double CostSum
+        {
+            get { return costSum; }
+            set 
+            {
+                costSum = value;
+                RaisePropertyChanged(() => CostSum);
+            }
+        }
+
 
         public SalesViewModel() // КОНСТРУКТОР
         {
@@ -98,10 +127,9 @@ namespace Deplphin.ECR.Pos.ViewsModels
             get { return check; }
             set
             {
-                MessageBox.Show("sds");
                 check = value;
                 cm.Check = value;
-                
+                UpdateCheckSum();
                 RaisePropertyChanged(() => Check);
 
             }
@@ -115,6 +143,7 @@ namespace Deplphin.ECR.Pos.ViewsModels
                 sum += c.Sum;
             }
             ChechSum = sum;
+            CostSum = ChechSum - PayhSum;
         }
 
 
@@ -152,7 +181,9 @@ namespace Deplphin.ECR.Pos.ViewsModels
                 Name = good.Name,
                 Price = good.Price
             });
-            
+
+
+            UpdateCheckSum();
         }
 
 
@@ -167,7 +198,7 @@ namespace Deplphin.ECR.Pos.ViewsModels
                     {
                         KKM.Sale(Check, PayhSum);
                         Check.Clear();
-                        
+                        PayhSum = 0;
                     }
 
                 }));
@@ -185,6 +216,47 @@ namespace Deplphin.ECR.Pos.ViewsModels
                 }));
             }
         }
+
+
+
+        private ICommand delCheckSelectrdItemCommand;
+        public ICommand DelCheckSelectrdItemCommand
+        {
+            get
+            {
+                return delCheckSelectrdItemCommand ?? (delCheckSelectrdItemCommand = new RelayCommand(() =>
+                {
+                    Check.Remove(SelectedCheckItem);
+                }));
+            }
+        }
+
+
+        private ICommand clearCheckCommand;
+        public ICommand ClearCheckCommand
+        {
+            get
+            {
+                return clearCheckCommand ?? (clearCheckCommand = new RelayCommand(() =>
+                {
+                    Check.Clear();
+                }));
+            }
+        }
+
+        private ICommand enterPayhSumCommand;
+        public ICommand EnterPayhSumCommand
+        {
+            get
+            {
+                return enterPayhSumCommand ?? (enterPayhSumCommand = new RelayCommand(() =>
+                {
+                    UpdateCheckSum();
+                }));
+            }
+        }
+
+
 
     }
 

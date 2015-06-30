@@ -67,7 +67,7 @@ namespace Deplphin.ECR.Pos.DAL
 
             
             
-            t.t400me("pay;0;"+paySum.ToString("F2")+"");
+            t.t400me("pay;0;"+paySum.ToString("N2")+"");
 
             t.t400me("close_port;");
             return true;

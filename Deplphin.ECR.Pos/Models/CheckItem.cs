@@ -17,6 +17,7 @@ namespace Deplphin.ECR.Pos.Models
         private double count;
         private double sum;
 
+
         public double Sum
         {
             get { return sum; }
