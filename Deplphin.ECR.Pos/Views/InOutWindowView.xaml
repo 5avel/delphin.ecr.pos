@@ -1,0 +1,23 @@
+﻿<Window x:Class="Deplphin.ECR.Pos.Views.InOutWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:Deplphin.ECR.Pos.ViewsModels"
+        Title="InOutWindow" Height="152" Width="316" ResizeMode="NoResize">
+    <Window.DataContext>
+        <vm:InOutWindowViewModel/>
+    </Window.DataContext>
+    <Grid VerticalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="149*"/>
+            <ColumnDefinition Width="159*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="29*"/>
+            <RowDefinition Height="47*"/>
+            <RowDefinition Height="45*"/>
+        </Grid.RowDefinitions>
+        <TextBox  Grid.Row="1" Text="{Binding InOutSum}" TextWrapping="Wrap"  Grid.ColumnSpan="2" FontSize="36" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+        <Button Content="Внесание" Command="{Binding InCommand}"  Grid.Row="2"   Grid.Column="1"/>
+        <Button Content="Выдача" Command="{Binding OutCommand}" Grid.Row="2"   Grid.Column="0"/>
+    </Grid>
+</Window>

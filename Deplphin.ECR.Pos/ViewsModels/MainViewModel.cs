@@ -82,14 +82,40 @@ namespace Deplphin.ECR.Pos.ViewsModels
             }
         }
 
-        private ICommand testCommand;
-        public ICommand TestCommand
+        private ICommand emptyReceiptCommand;
+        public ICommand EmptyReceiptCommand
         {
             get
             {
-                return testCommand ?? (testCommand = new RelayCommand(() =>
+                return emptyReceiptCommand ?? (emptyReceiptCommand = new RelayCommand(() =>
                 {
-                    KKM.Test();
+                    KKM.PrintEmptyReceipt();
+                }));
+            }
+        }
+
+        private ICommand copyLastReceiptCommand;
+        public ICommand CopyLastReceiptCommand
+        {
+            get
+            {
+                return copyLastReceiptCommand ?? (copyLastReceiptCommand = new RelayCommand(() =>
+                {
+                    KKM.PrintCopyLastReceipt();
+                }));
+            }
+        }
+
+        private ICommand inOutCommand;
+        public ICommand InOutCommand
+        {
+            get
+            {
+                return inOutCommand ?? (inOutCommand = new RelayCommand(() =>
+                {
+                    Views.InOutWindowView inOutView = new Views.InOutWindowView();
+                    inOutView.ShowInTaskbar = false;
+                    inOutView.Show();
                 }));
             }
         }

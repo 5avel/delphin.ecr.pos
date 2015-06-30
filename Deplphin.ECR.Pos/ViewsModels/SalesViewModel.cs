@@ -77,17 +77,44 @@ namespace Deplphin.ECR.Pos.ViewsModels
             }
         }
 
+        private double discPrc;
+
+        public double DiscPrc
+        {
+            get { return discPrc; }
+            set 
+            { 
+                discPrc = value;
+                UpdateCheckSum();
+                RaisePropertyChanged(() => DiscPrc);
+            }
+        }
+
+
+        private ObservableCollection<string> saleType;
+
+        private int saleTypeIndex;
+        public int SaleTypeIndex
+        {
+            get { return saleTypeIndex; }
+            set
+            {
+                saleTypeIndex = value;
+                RaisePropertyChanged(() => SaleTypeIndex);
+            }
+        }
 
         public SalesViewModel() // КОНСТРУКТОР
         {
             cm = ConfigurationManager.GetInstance();
             GoodsGroupeCollection = cm.GoodsGroupeCollection;
-            if(cm.SelectedGroup != null) SelectedGroup = cm.SelectedGroup;
+            if (cm.SelectedGroup != null) SelectedGroup = cm.SelectedGroup;
             if (cm.Check != null) Check = cm.Check;
+
+            SaleTypeIndex = 0;
+
+
         }
-
-
-
         public ObservableCollection<Good> GoodsCollection
         {
             get { return goodsCollection; }
@@ -142,7 +169,16 @@ namespace Deplphin.ECR.Pos.ViewsModels
             {
                 sum += c.Sum;
             }
-            ChechSum = sum;
+            if (discPrc != 0)
+            {
+                ChechSum = sum;
+                ChechSum -= DiscPrc;
+            }
+            else
+            {
+                ChechSum = sum;
+            }
+
             CostSum = ChechSum - PayhSum;
         }
 
@@ -196,9 +232,10 @@ namespace Deplphin.ECR.Pos.ViewsModels
                 {
                     if (Check != null && Check.Count > 0)
                     {
-                        KKM.Sale(Check, PayhSum);
+                        KKM.Sale(Check, PayhSum, SaleTypeIndex, DiscPrc);
                         Check.Clear();
                         PayhSum = 0;
+                        DiscPrc = 0;
                     }
 
                 }));

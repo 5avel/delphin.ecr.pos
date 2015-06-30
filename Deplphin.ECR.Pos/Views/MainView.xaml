@@ -33,11 +33,12 @@
                 <MenuItem Header="Отчеты" HorizontalAlignment="Left" Width="140" Height="20"/>
                 <MenuItem Header="Настройки" HorizontalAlignment="Left" Width="140" Height="20"/>
             </MenuItem>
-            <MenuItem Header="ККМ">
+            <MenuItem Header="ККМ" Width="200">
                 <MenuItem Header="Х-Отчет" HorizontalAlignment="Left" Width="140" Height="20" Command="{Binding PrintXReportCommand}" />
                 <MenuItem Header="Z-Отчет" HorizontalAlignment="Left" Width="140" Height="20" Command="{Binding PrintZReportCommand}"/>
-                <MenuItem Header="Test" HorizontalAlignment="Left" Width="140" Height="20" Command="{Binding TestCommand}" />
-                <MenuItem Header="Настройки" HorizontalAlignment="Left" Width="140" Height="20"/>
+                <MenuItem Header="Нулевой чек" HorizontalAlignment="Left" Width="200" Height="20" Command="{Binding EmptyReceiptCommand}" />
+                <MenuItem Header="Копия последнего чека" HorizontalAlignment="Left" Width="250" Height="20" Command="{Binding CopyLastReceiptCommand}" />
+                <MenuItem Header="Выдача/Внесание" HorizontalAlignment="Left" Width="250" Height="20" Command="{Binding InOutCommand}" />
             </MenuItem>
         </Menu>
         <Frame Source="{Binding FrameSource}" HorizontalAlignment="Stretch"  Grid.Row="2" VerticalAlignment="Stretch" NavigationUIVisibility="Hidden" />

@@ -36,6 +36,46 @@ namespace Deplphin.ECR.Pos.DAL
             return true;
         }
 
+        public static bool CancelReceipt()
+        {
+            t.t400me("open_port;4;115200;");
+            t.t400me("cashier_registration;1;0;");
+            t.t400me("cancel_receipt;");
+            t.t400me("close_port;");
+            return true;
+        }
+
+        public static bool PrintEmptyReceipt()
+        {
+            t.t400me("open_port;4;115200;");
+            t.t400me("cashier_registration;1;0;");
+            t.t400me("print_empty_receipt;");
+            t.t400me("close_port;");
+            return true;
+        }
+
+        public static bool PrintCopyLastReceipt()
+        {
+            t.t400me("open_port;4;115200;");
+            t.t400me("cashier_registration;1;0;");
+            t.t400me("print_receipt_copy;");
+            t.t400me("close_port;");
+            return true;
+        }
+
+        public static bool PrintInOut(double sum, bool isIn_notOut = true)
+        {
+            t.t400me("open_port;4;115200;");
+            t.t400me("cashier_registration;1;0;");
+            if (isIn_notOut) { t.t400me("in_out;0;0;0;0;" + sum.ToString("N2") + ""); }
+            else {             t.t400me("in_out;0;0;0;1;" + sum.ToString("N2") + ""); }
+            t.t400me("close_port;");
+            return true;
+        }
+
+        
+        
+
         public static bool Test()
         {
             //Console.WriteLine(t.t400me("open_port;4;115200;"));
@@ -52,7 +92,7 @@ namespace Deplphin.ECR.Pos.DAL
             return true;
         }
 
-        public static bool Sale(ObservableCollection<CheckItem> Check, double paySum)
+        public static bool Sale(ObservableCollection<CheckItem> Check, double paySum, int payType, double discontPrc)
         {
             t.t400me("open_port;4;115200;");
             t.t400me("cashier_registration;1;0;");
@@ -63,11 +103,11 @@ namespace Deplphin.ECR.Pos.DAL
                 t.t400me("add_plu;"+c.Code.ToString()+";0;1;0;0;0;1;"+c.Price.ToString()+";111111;"+c.Name+";100000;");
                 t.t400me("sale_plu;0;0;0;"+c.Count.ToString()+";"+c.Code.ToString()+"");
             }
-            
 
+
+            t.t400me("discount_surcharge;0;1;1;" + discontPrc.ToString("N2") + ";");
             
-            
-            t.t400me("pay;0;"+paySum.ToString("N2")+"");
+            t.t400me("pay;"+payType.ToString()+";"+paySum.ToString("N2")+"");
 
             t.t400me("close_port;");
             return true;
