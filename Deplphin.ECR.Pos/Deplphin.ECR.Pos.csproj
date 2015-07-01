@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{FB96CE53-A5A3-4098-A6F6-407FF32FF6B2}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Deplphin.ECR.Pos</RootNamespace>
     <AssemblyName>Deplphin.ECR.Pos</AssemblyName>
@@ -37,6 +37,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Delphin.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GalaSoft.MvvmLight">
@@ -76,11 +79,13 @@
     <Compile Include="DAL\ConfigurationManager.cs" />
     <Compile Include="DAL\KKM.cs" />
     <Compile Include="DAL\SettingsProvider.cs" />
+    <Compile Include="Models\Check.cs" />
     <Compile Include="Models\CheckItem.cs" />
     <Compile Include="Models\Good.cs" />
     <Compile Include="Models\GoodsGroup.cs" />
     <Compile Include="Models\Setings.cs" />
     <Compile Include="ViewsModels\GoodsViewModel.cs" />
+    <Compile Include="ViewsModels\Helpers\Class1.cs" />
     <Compile Include="ViewsModels\InOutWindowViewModel.cs" />
     <Compile Include="ViewsModels\MainViewModel.cs" />
     <Compile Include="ViewsModels\SalesViewModel.cs" />
@@ -166,7 +171,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewsModels\Helpers\" />
+    <Resource Include="Delphin.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

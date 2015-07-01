@@ -1,14 +1,12 @@
 ﻿using GalaSoft.MvvmLight;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Deplphin.ECR.Pos.DAL;
-
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows;
 namespace Deplphin.ECR.Pos.Models
 {
     public class CheckItem : ObservableObject
     {
+        Check ch;
 
         private string name;
         private int code;
@@ -17,13 +15,18 @@ namespace Deplphin.ECR.Pos.Models
         private double count;
         private double sum;
 
+        public CheckItem()
+        {
+            ch = Check.GetInstance();
+        }
 
         public double Sum
         {
             get { return sum; }
             set 
-            { 
+            {  
                 sum = value;
+                ch.UpdateSceckSum();
                 RaisePropertyChanged(() => Sum);
             }
         }
@@ -32,7 +35,7 @@ namespace Deplphin.ECR.Pos.Models
         {
             get { return count; }
             set 
-            { 
+            {
                 count = value;
                 Sum = Count * Price;
                 RaisePropertyChanged(() => Count);

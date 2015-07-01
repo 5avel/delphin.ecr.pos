@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 
 namespace Deplphin.ECR.Pos.Models
 {
@@ -12,6 +8,7 @@ namespace Deplphin.ECR.Pos.Models
         private int code;
         private double price;
         private int goodsGroupeId;
+        public static double CheckSum;
 
         public int GoodsGroupeId
         {
