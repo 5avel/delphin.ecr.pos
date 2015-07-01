@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Views="clr-namespace:Deplphin.ECR.Pos.Views" x:Class="Deplphin.ECR.Pos.MainView"
         xmlns:vm ="clr-namespace:Deplphin.ECR.Pos.ViewsModels"
-        Title="MainView" MinHeight="650" MinWidth="880" Icon="/Deplphin.ECR.Pos;component/Images/Delphin.ico">
+        Title="MainView" MinHeight="600" Height="600" MinWidth="1020" Width="1000" Icon="/Deplphin.ECR.Pos;component/Images/Delphin.ico">
     <Window.DataContext>
         <vm:MainViewModel/>
     </Window.DataContext>
