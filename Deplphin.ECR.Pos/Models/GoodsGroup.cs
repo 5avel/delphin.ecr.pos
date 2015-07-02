@@ -1,4 +1,6 @@
-﻿using GalaSoft.MvvmLight;
+﻿
+
+using Deplphin.ECR.Pos.MVVMLib;
 
 namespace Deplphin.ECR.Pos.Models
 {

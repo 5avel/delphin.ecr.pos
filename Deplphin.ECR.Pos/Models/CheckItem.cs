@@ -1,7 +1,9 @@
-﻿using GalaSoft.MvvmLight;
+﻿
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
+using Deplphin.ECR.Pos.MVVMLib;
+
 namespace Deplphin.ECR.Pos.Models
 {
     public class CheckItem : ObservableObject
@@ -27,7 +29,7 @@ namespace Deplphin.ECR.Pos.Models
             {  
                 sum = value;
                 ch.UpdateSceckSum();
-                RaisePropertyChanged(() => Sum);
+                OnPropertyChanged(() => Sum);
             }
         }
 
@@ -38,7 +40,7 @@ namespace Deplphin.ECR.Pos.Models
             {
                 count = value;
                 Sum = Count * Price;
-                RaisePropertyChanged(() => Count);
+                OnPropertyChanged(() => Count);
             }
         }
 
@@ -55,7 +57,7 @@ namespace Deplphin.ECR.Pos.Models
             {
                 price = value;
                 Sum = Count * Price;
-                RaisePropertyChanged(() => Price);
+                OnPropertyChanged(() => Price);
             }
         }
 

@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
 using Deplphin.ECR.Pos.Models;
 using Deplphin.ECR.Pos.DAL;
+using Deplphin.ECR.Pos.MVVMLib;
 
 namespace Deplphin.ECR.Pos.ViewsModels
 {
@@ -26,7 +25,7 @@ namespace Deplphin.ECR.Pos.ViewsModels
             set 
             {
                 inOutSum = value;
-                RaisePropertyChanged(() => InOutSum);
+                OnPropertyChanged("InOutSum");
             }
         }
 

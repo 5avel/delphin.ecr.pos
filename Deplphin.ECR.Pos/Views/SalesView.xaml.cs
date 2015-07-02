@@ -1,6 +1,5 @@
 ﻿using System.Windows.Controls;
 
-using GalaSoft.MvvmLight.Command;
 using Deplphin.ECR.Pos.ViewsModels;
 using System.Windows;
 using System;

@@ -1,5 +1,5 @@
 ﻿using System;
-using GalaSoft.MvvmLight;
+
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +8,9 @@ using System.Xml.Serialization;
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
 using Deplphin.ECR.Pos.DAL;
+using Deplphin.ECR.Pos.MVVMLib;
+
 
 namespace Deplphin.ECR.Pos.ViewsModels
 {
@@ -38,7 +39,7 @@ namespace Deplphin.ECR.Pos.ViewsModels
             set 
             { 
                 isSelectedGroupe = value;
-                RaisePropertyChanged(() => IsSelectedGroupe);
+                OnPropertyChanged("IsSelectedGroupe");
             }
         }
         private bool isSelectedGood;
@@ -49,7 +50,7 @@ namespace Deplphin.ECR.Pos.ViewsModels
             set 
             { 
                 isSelectedGood = value;
-                RaisePropertyChanged(() => IsSelectedGood);
+                OnPropertyChanged("IsSelectedGood");
             }
         }
 
@@ -59,7 +60,7 @@ namespace Deplphin.ECR.Pos.ViewsModels
             set
             {
                 goodsCollection = value;
-                RaisePropertyChanged(() => GoodsCollection);
+                OnPropertyChanged("GoodsCollection");
             }
         }
 
@@ -73,7 +74,7 @@ namespace Deplphin.ECR.Pos.ViewsModels
                 SetGoodsSelectedGrop(); // Выводит товары выбранной группы
                 if (value == null) IsSelectedGroupe = false;
                 else IsSelectedGroupe = true;
-                RaisePropertyChanged(() => SelectedGroup);
+                OnPropertyChanged("SelectedGroup");
             }
         }
 

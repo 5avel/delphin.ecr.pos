@@ -1,30 +1,22 @@
-﻿using System;
-using GalaSoft.MvvmLight;
-using System.Collections.ObjectModel;
-
+﻿using System.Collections.ObjectModel;
 using Deplphin.ECR.Pos.Models;
-using System.Xml.Serialization;
-using System.IO;
-using System.Windows;
 using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
 using Deplphin.ECR.Pos.DAL;
-
-using System.Reflection;
-using ecrmini;
-using System.Diagnostics;
-using System.Globalization;
-
+using Deplphin.ECR.Pos.MVVMLib;
 
 namespace Deplphin.ECR.Pos.ViewsModels
 {
     public class SalesViewModel : ViewModelBase
     {
+       // public ICommand SaveCommand { get; private set; }
+
+
+
         private Check check = Check.GetInstance();
         public Check Check
         {
             get { return check; }
-            set { check = value; RaisePropertyChanged(() => Check); }
+            set { check = value; OnPropertyChanged("Check"); }
         }
 
       
@@ -34,7 +26,7 @@ namespace Deplphin.ECR.Pos.ViewsModels
         public ObservableCollection<Good> GoodsCollection
         {
             get { return goodsCollection; }
-            set { goodsCollection = value; RaisePropertyChanged(() => GoodsCollection); }
+            set { goodsCollection = value; OnPropertyChanged("GoodsCollection"); }
         }
 
         private Good selectedGood; // Выбранный товар
@@ -61,7 +53,7 @@ namespace Deplphin.ECR.Pos.ViewsModels
                 selectedGroup = value;
                 cm.SelectedGroup = value;
                 SetGoodsSelectedGrop(); // Выводит товары выбранной группы
-                RaisePropertyChanged(() => SelectedGroup);
+                OnPropertyChanged("SelectedGroup");
             }
         }
 

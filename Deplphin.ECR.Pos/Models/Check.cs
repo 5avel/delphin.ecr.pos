@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using GalaSoft.MvvmLight;
+using Deplphin.ECR.Pos.MVVMLib;
 using System.Collections.ObjectModel;
 
 namespace Deplphin.ECR.Pos.Models
@@ -40,7 +40,7 @@ namespace Deplphin.ECR.Pos.Models
             {
                 checkItems = value;
               //  UpdateSceckSum();
-                RaisePropertyChanged(() => CheckItems);
+                OnPropertyChanged(() => CheckItems);
             }
         }
 
@@ -48,28 +48,28 @@ namespace Deplphin.ECR.Pos.Models
         private double checkSum;
         public double CheckSum // Сумма чека
         {
-            get { return checkSum; } set {checkSum = value; RaisePropertyChanged(() => CheckSum); }
+            get { return checkSum; } set {checkSum = value; OnPropertyChanged(() => CheckSum); }
         }
 
         private double checkSumWithoutDisc;
         public double СheckSumWithoutDisc // Сумма чека без скидки
         {
             get { return checkSumWithoutDisc; }
-            set { checkSumWithoutDisc = value; RaisePropertyChanged(() => СheckSumWithoutDisc); }
+            set { checkSumWithoutDisc = value; OnPropertyChanged(() => СheckSumWithoutDisc); }
         }
 
         private double paySum;
         public double PaySum // Уплочено
         {
             get { return paySum; }
-            set { paySum = value; UpdateSceckSum(); RaisePropertyChanged(() => PaySum); }
+            set { paySum = value; UpdateSceckSum(); OnPropertyChanged(() => PaySum); }
         }
 
         private double discSum;
         public double DiscSum // Сумма скидки
         {
             get { return discSum; }
-            set { discSum = value; RaisePropertyChanged(() => DiscSum); }
+            set { discSum = value; OnPropertyChanged(() => DiscSum); }
         }
 
         private int discType;
@@ -79,21 +79,21 @@ namespace Deplphin.ECR.Pos.Models
         public int DiscType 
         {
             get { return discType; }
-            set { discType = value; RaisePropertyChanged(() => DiscType); }
+            set { discType = value; OnPropertyChanged(() => DiscType); }
         }
 
         private double discont;
         public double Discont // скидка Сумовая или %
         {
             get { return discont; }
-            set { discont = value; UpdateSceckSum(); RaisePropertyChanged(() => Discont); }
+            set { discont = value; UpdateSceckSum(); OnPropertyChanged(() => Discont); }
         }
 
         private double costSum;
         public double CostSum  // Здача
         {
             get { return costSum; }
-            set { costSum = value; RaisePropertyChanged(() => CostSum); }
+            set { costSum = value; OnPropertyChanged(() => CostSum); }
         }
 
         private CheckItem selectedCheckItem;
@@ -101,7 +101,7 @@ namespace Deplphin.ECR.Pos.Models
         public CheckItem SelectedCheckItem
         {
             get { return selectedCheckItem; }
-            set { selectedCheckItem = value; RaisePropertyChanged(() => SelectedCheckItem); }
+            set { selectedCheckItem = value; OnPropertyChanged(() => SelectedCheckItem); }
         }
 
 
