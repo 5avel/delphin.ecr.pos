@@ -161,6 +161,9 @@ namespace Deplphin.ECR.Pos.Models
         {
             CheckItems.Clear();
             CheckSum = 0;
+            Discont = 0;
+            PaySum = 0;
+            CostSum = 0;
         }
     }
 }
