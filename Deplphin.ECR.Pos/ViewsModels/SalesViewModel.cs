@@ -12,7 +12,6 @@ using Deplphin.ECR.Pos.DAL;
 
 using System.Reflection;
 using ecrmini;
-using GalaSoft.MvvmLight.Messaging;
 using System.Diagnostics;
 using System.Globalization;
 
